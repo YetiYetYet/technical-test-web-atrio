@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace TestTechniqueWebAtrio.Models;
 
 public class Job
 {
     [Key]
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     
     [MaxLength(100)]
     public required string CompanyName { get; set; }
@@ -21,5 +22,6 @@ public class Job
     public required Guid PersonId { get; set; }
 
     [ForeignKey("PersonId")]
+    [JsonIgnore]
     public Person Person { get; set; }
 }
